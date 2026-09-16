@@ -1,0 +1,27 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Model files (too large for GitHub - regenerate with train_model_v2.py)
+*.pkl
+
+# Large datasets (regenerate by downloading from Kaggle)
+raw_data.csv
+full_phishing_urls.csv
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flask
+instance/
+*.log
