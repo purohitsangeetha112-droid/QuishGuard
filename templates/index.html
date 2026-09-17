@@ -41,7 +41,6 @@
         position: relative;
     }
 
-    /* Animated particle background */
     #particles {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -49,7 +48,6 @@
         pointer-events: none;
     }
 
-    /* Animated gradient orbs */
     .orb {
         position: fixed;
         border-radius: 50%;
@@ -76,7 +74,6 @@
         z-index: 2;
     }
 
-    /* =================== HEADER =================== */
     header { text-align: center; margin-bottom: 32px; animation: fadeDown 0.8s ease; }
     @keyframes fadeDown {
         from { opacity: 0; transform: translateY(-20px); }
@@ -110,7 +107,6 @@
     }
     @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(1.3);} }
 
-    /* Theme toggle */
     .theme-toggle {
         position: fixed; top: 20px; right: 20px;
         width: 44px; height: 44px; border-radius: 50%;
@@ -124,7 +120,6 @@
     }
     .theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
 
-    /* =================== TABS =================== */
     .tabs {
         display: flex; gap: 4px; padding: 4px;
         background: var(--bg-card);
@@ -157,7 +152,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* =================== CARDS =================== */
     .card {
         background: var(--bg-card);
         backdrop-filter: blur(20px);
@@ -170,7 +164,6 @@
     }
     .card:hover { transform: translateY(-2px); }
 
-    /* =================== UPLOAD =================== */
     .upload-zone {
         border: 2px dashed var(--border);
         border-radius: 16px;
@@ -200,7 +193,6 @@
     .upload-text { font-size: 15px; font-weight: 600; }
     .upload-sub { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
 
-    /* =================== INPUT =================== */
     .input-row { display: flex; gap: 10px; margin-bottom: 12px; }
     .input-row input, .input-row textarea {
         flex: 1; padding: 14px 16px;
@@ -235,7 +227,6 @@
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-    /* =================== VERDICT =================== */
     .verdict-container {
         display: none;
         margin-top: 24px;
@@ -253,15 +244,8 @@
         75% { transform: translateX(8px); }
     }
 
-    .verdict-header {
-        display: flex; align-items: center; gap: 20px;
-        flex-wrap: wrap;
-    }
-    .gauge-wrap {
-        position: relative;
-        width: 120px; height: 120px;
-        flex-shrink: 0;
-    }
+    .verdict-header { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .gauge-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
     .gauge-svg { transform: rotate(-90deg); }
     .gauge-bg { fill: none; stroke: rgba(148,163,184,0.15); stroke-width: 10; }
     .gauge-fill {
@@ -337,7 +321,6 @@
     .explanation-item .icon { font-size: 18px; }
     .explanation-item .text { flex: 1; font-size: 13px; }
 
-    /* =================== UPI PANEL =================== */
     .upi-panel {
         background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(96,165,250,0.15));
         border: 1px solid var(--accent);
@@ -351,7 +334,6 @@
     .upi-row .label { color: var(--text-dim); }
     .upi-row .value { font-family: monospace; }
 
-    /* =================== HISTORY =================== */
     .history-item {
         display: flex; align-items: center; gap: 12px;
         padding: 12px; background: var(--bg-input);
@@ -369,32 +351,132 @@
     .hist-SAFE { background: var(--safe); color: white; }
     .hist-SUSPICIOUS { background: var(--warn); color: white; }
     .hist-DANGEROUS { background: var(--danger); color: white; }
+    .hist-ERROR { background: #64748b; color: white; }
     .hist-url { flex: 1; color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .hist-time { color: var(--text-dim); font-size: 11px; }
 
-    /* =================== STATS =================== */
-    .stats-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px; margin-bottom: 20px;
+    /* ============ STATS DASHBOARD ============ */
+    .stats-hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
     }
-    .stat-card {
-        padding: 16px; border-radius: 12px;
-        background: var(--bg-input);
+    .hero-stat {
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
         border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 14px;
         text-align: center;
-        transition: transform 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: popIn 0.5s backwards;
     }
-    .stat-card:hover { transform: translateY(-4px); }
-    .stat-value { font-size: 28px; font-weight: 800; }
-    .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    .hero-stat:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(167,139,250,0.2);
+    }
+    .hero-stat:nth-child(1) { animation-delay: 0.05s; }
+    .hero-stat:nth-child(2) { animation-delay: 0.1s; }
+    .hero-stat:nth-child(3) { animation-delay: 0.15s; }
+    .hero-stat:nth-child(4) { animation-delay: 0.2s; }
+    .hero-stat:nth-child(5) { animation-delay: 0.25s; }
+    .hero-stat:nth-child(6) { animation-delay: 0.3s; }
+    .hero-value {
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1.1;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-label {
+        font-size: 11px;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 6px;
+    }
 
-    /* =================== BATCH =================== */
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+    @media (max-width: 700px) {
+        .two-col { grid-template-columns: 1fr; }
+    }
+
+    .insights-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .insight {
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: var(--bg-input);
+        border-left: 4px solid var(--accent);
+        font-size: 13px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        animation: slideRight 0.5s backwards;
+    }
+    .insight.warn { border-left-color: var(--warn); }
+    .insight.danger { border-left-color: var(--danger); }
+    .insight.safe { border-left-color: var(--safe); }
+    .insight .insight-icon { font-size: 18px; flex-shrink: 0; }
+    .insight .insight-text { flex: 1; line-height: 1.4; }
+    .insight .insight-title { font-weight: 700; display: block; margin-bottom: 2px; }
+    .insight .insight-body { color: var(--text-dim); font-size: 12px; }
+
+    .danger-list-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: var(--bg-input);
+        border-radius: 10px;
+        margin-bottom: 8px;
+        border-left: 3px solid var(--danger);
+        animation: slideRight 0.4s backwards;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .danger-list-item:hover { background: rgba(239,68,68,0.08); }
+    .danger-list-item .danger-url {
+        flex: 1;
+        font-family: monospace;
+        font-size: 12px;
+        color: var(--text);
+        word-break: break-all;
+    }
+    .danger-list-item .danger-prob {
+        color: var(--danger);
+        font-weight: 700;
+        font-size: 13px;
+    }
+
     #batchInput {
         min-height: 180px;
         resize: vertical;
         font-family: 'Monaco', monospace;
         font-size: 13px;
         line-height: 1.5;
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--bg-input);
+        color: var(--text);
+    }
+    #batchInput:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
     }
     .batch-result {
         display: flex; align-items: center; gap: 10px;
@@ -406,8 +488,19 @@
         padding: 2px 8px; border-radius: 4px;
         font-size: 10px; font-weight: 700;
     }
+    .stat-card {
+        padding: 16px; border-radius: 12px;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        text-align: center;
+    }
+    .stats-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px; margin-bottom: 20px;
+    }
+    .stat-value { font-size: 28px; font-weight: 800; }
+    .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-    /* =================== TOAST =================== */
     .toast-container {
         position: fixed; bottom: 24px; right: 24px;
         z-index: 999; display: flex; flex-direction: column; gap: 10px;
@@ -434,7 +527,6 @@
         to { opacity: 0; transform: translateX(100px); }
     }
 
-    /* =================== EXAMPLES =================== */
     .examples { margin-top: 16px; }
     .examples h3 { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .example-btn {
@@ -452,21 +544,13 @@
         border-color: var(--accent);
     }
 
-    /* =================== QR PREVIEW =================== */
-    .qr-preview {
-        margin-top: 12px; text-align: center;
-        animation: popIn 0.5s;
-    }
+    .qr-preview { margin-top: 12px; text-align: center; animation: popIn 0.5s; }
     .qr-preview img {
         max-width: 180px; max-height: 180px;
         border-radius: 12px; border: 2px solid var(--border);
     }
 
-    /* =================== LOADING =================== */
-    .loading {
-        text-align: center; padding: 30px;
-        color: var(--text-dim);
-    }
+    .loading { text-align: center; padding: 30px; color: var(--text-dim); }
     .spinner {
         width: 40px; height: 40px; margin: 0 auto 12px;
         border: 3px solid var(--border);
@@ -476,7 +560,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* =================== MOBILE =================== */
     @media (max-width: 600px) {
         .logo { font-size: 36px; }
         .input-row { flex-direction: column; }
@@ -484,7 +567,6 @@
         .gauge-wrap { margin: 0 auto; }
     }
 
-    /* Section headings */
     .section-title {
         font-size: 12px; color: var(--text-dim);
         text-transform: uppercase; letter-spacing: 1.5px;
@@ -504,12 +586,9 @@
         <header>
             <div class="logo">🛡️ QuishGuard</div>
             <p class="tagline">Real-time QR Phishing (Quishing) Detector for UPI / Payments</p>
-            <div class="status-badge">
-                <span class="dot"></span> Model Active
-            </div>
+            <div class="status-badge"><span class="dot"></span> Model Active</div>
         </header>
 
-        <!-- TABS -->
         <div class="tabs">
             <button class="tab active" onclick="switchTab('scan')">📷 Scan</button>
             <button class="tab" onclick="switchTab('batch')">🚀 Batch</button>
@@ -517,7 +596,7 @@
             <button class="tab" onclick="switchTab('stats')">📊 Stats</button>
         </div>
 
-        <!-- ========== SCAN TAB ========== -->
+        <!-- SCAN TAB -->
         <div id="tab-scan" class="tab-content active">
             <div class="card">
                 <div class="upload-zone" id="uploadZone"
@@ -525,8 +604,7 @@
                      ondragover="event.preventDefault(); this.classList.add('dragover');"
                      ondragleave="this.classList.remove('dragover');"
                      ondrop="handleDrop(event);">
-                    <input type="file" id="qrFileInput" accept="image/*"
-                           style="display: none;" onchange="handleFileUpload(event)">
+                    <input type="file" id="qrFileInput" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
                     <span class="upload-icon">📷</span>
                     <div class="upload-text">Upload QR Code Image</div>
                     <div class="upload-sub">Click or drag &amp; drop a QR image here</div>
@@ -547,21 +625,19 @@
                     <button class="example-btn" onclick="setUrl('http://free-gift-iphone.tk/claim')">free-gift-iphone.tk</button>
                     <button class="example-btn" onclick="setUrl('http://login-paytm-kyc.top/verify')">login-paytm-kyc.top</button>
                     <button class="example-btn" onclick="setUrl('http://192.168.1.1/login')">192.168.1.1/login</button>
-                    <button class="example-btn" onclick="setUrl('upi://pay?pa=merchant@upi&pn=Shop&am=500')">UPI Link (safe VPA)</button>
-                    <button class="example-btn" onclick="setUrl('upi://pay?pa=fake@xyz&pn=Scam&am=9999')">UPI Link (suspicious VPA)</button>
+                    <button class="example-btn" onclick="setUrl('upi://pay?pa=merchant@upi&pn=Shop&am=500')">UPI (safe VPA)</button>
+                    <button class="example-btn" onclick="setUrl('upi://pay?pa=fake@xyz&pn=Scam&am=9999')">UPI (suspicious VPA)</button>
                 </div>
             </div>
 
             <div id="result" class="verdict-container"></div>
         </div>
 
-        <!-- ========== BATCH TAB ========== -->
+        <!-- BATCH TAB -->
         <div id="tab-batch" class="tab-content">
             <div class="card">
                 <div class="section-title">Batch Analysis (max 50 URLs)</div>
-                <textarea id="batchInput"
-          style="width:100%; padding:14px 16px; border-radius:12px; border:1px solid var(--border); background:var(--bg-input); color:var(--text); font-family:'Monaco',monospace; font-size:13px; line-height:1.5; resize:vertical; min-height:180px;"
-          placeholder="Paste URLs here, one per line:&#10;https://google.com&#10;http://fake-bank.tk/login&#10;https://sbi.co.in"></textarea>
+                <textarea id="batchInput" placeholder="Paste URLs here, one per line:&#10;https://google.com&#10;http://fake-bank.tk/login&#10;https://sbi.co.in"></textarea>
                 <div style="display:flex; gap:10px; margin-top:12px;">
                     <button class="btn btn-primary" onclick="analyzeBatch()">🚀 Analyze All</button>
                     <button class="btn btn-ghost" onclick="exportBatchCSV()">📥 Export CSV</button>
@@ -570,7 +646,7 @@
             <div id="batchResults"></div>
         </div>
 
-        <!-- ========== HISTORY TAB ========== -->
+        <!-- HISTORY TAB -->
         <div id="tab-history" class="tab-content">
             <div class="card">
                 <div class="section-title">Recent Scans (stored locally)</div>
@@ -582,29 +658,88 @@
             </div>
         </div>
 
-        <!-- ========== STATS TAB ========== -->
+        <!-- STATS TAB -->
         <div id="tab-stats" class="tab-content">
+
+            <div class="stats-hero">
+                <div class="hero-stat">
+                    <div class="hero-value" id="statTotal">0</div>
+                    <div class="hero-label">Total Scans</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-value" style="background:#10b981;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" id="statSafe">0</div>
+                    <div class="hero-label">Safe</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-value" style="background:#f59e0b;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" id="statSuspicious">0</div>
+                    <div class="hero-label">Suspicious</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-value" style="background:#ef4444;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;" id="statDangerous">0</div>
+                    <div class="hero-label">Dangerous</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-value" id="statAvgRisk">—</div>
+                    <div class="hero-label">Avg Risk</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-value" id="statTrust">—</div>
+                    <div class="hero-label">Trust Score</div>
+                </div>
+            </div>
+
             <div class="card">
-                <div class="section-title">Session Statistics</div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value" id="statTotal">0</div>
-                        <div class="stat-label">Total Scans</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="statSafe" style="color:var(--safe)">0</div>
-                        <div class="stat-label">Safe</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="statSuspicious" style="color:var(--warn)">0</div>
-                        <div class="stat-label">Suspicious</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="statDangerous" style="color:var(--danger)">0</div>
-                        <div class="stat-label">Dangerous</div>
+                <div class="section-title">💡 Auto-Generated Insights</div>
+                <div id="insightsList" class="insights-list"></div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📈 Scans Over Time (Last 7 Days)</div>
+                <div style="height:220px; position:relative;">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="card">
+                    <div class="section-title">🍩 Verdict Breakdown</div>
+                    <div style="height:220px; position:relative;">
+                        <canvas id="statsChart"></canvas>
                     </div>
                 </div>
-                <canvas id="statsChart" height="200"></canvas>
+                <div class="card">
+                    <div class="section-title">🥧 Detection Method</div>
+                    <div style="height:220px; position:relative;">
+                        <canvas id="methodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="card">
+                    <div class="section-title">🌐 Top Suspicious TLDs</div>
+                    <div style="height:200px; position:relative;">
+                        <canvas id="tldChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="section-title">🎯 Top Impersonated Brands</div>
+                    <div style="height:200px; position:relative;">
+                        <canvas id="brandChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">📉 Risk Score Distribution</div>
+                <div style="height:180px; position:relative;">
+                    <canvas id="riskDistChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">🚨 Most Recent Dangerous URLs</div>
+                <div id="dangerList"></div>
             </div>
         </div>
     </div>
@@ -683,7 +818,7 @@ function toggleTheme() {
     html.setAttribute('data-theme', isDark ? 'light' : 'dark');
     document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    if (statsChart) rebuildChart();
+    if (typeof statsChart !== 'undefined' && statsChart) renderStats();
 }
 (function restoreTheme() {
     const saved = localStorage.getItem('theme');
@@ -705,6 +840,16 @@ function switchTab(name) {
     if (name === 'history') renderHistory();
 }
 
+function switchTabByName(name) {
+    const tabs = ['scan', 'batch', 'history', 'stats'];
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+    if (name === 'stats') renderStats();
+    if (name === 'history') renderHistory();
+}
+
 // ============================================================
 // TOASTS
 // ============================================================
@@ -720,22 +865,60 @@ function toast(message, type = 'info') {
 }
 
 // ============================================================
-// HISTORY (localStorage)
+// HELPERS
+// ============================================================
+function getDomain(url) {
+    try {
+        let u = url;
+        if (url.startsWith('upi://')) {
+            return 'upi-payment';
+        }
+        if (!url.startsWith('http')) u = 'http://' + url;
+        const parsed = new URL(u);
+        return (parsed.hostname || '').toLowerCase().replace(/^www\./, '');
+    } catch {
+        return '';
+    }
+}
+
+function getTLD(domain) {
+    const parts = domain.split('.');
+    return parts.length >= 2 ? '.' + parts[parts.length - 1] : '';
+}
+
+const KNOWN_BRANDS = [
+    'paytm', 'phonepe', 'sbi', 'hdfc', 'icici', 'axis', 'kotak',
+    'google', 'amazon', 'flipkart', 'paypal', 'upi', 'bhim',
+    'gpay', 'netflix', 'facebook', 'instagram', 'whatsapp',
+    'apple', 'microsoft', 'linkedin', 'yahoo', 'irctc', 'airtel'
+];
+
+function findBrands(url) {
+    const lower = url.toLowerCase();
+    return KNOWN_BRANDS.filter(b => lower.includes(b));
+}
+
+// ============================================================
+// HISTORY
 // ============================================================
 let history = JSON.parse(localStorage.getItem('qg_history') || '[]');
 
 function saveHistory() {
-    localStorage.setItem('qg_history', JSON.stringify(history.slice(0, 50)));
+    localStorage.setItem('qg_history', JSON.stringify(history.slice(0, 100)));
 }
 
 function addToHistory(data) {
+    const domain = getDomain(data.url);
     history.unshift({
         verdict: data.verdict,
         url: data.url,
         prob: data.phishing_probability,
+        method: data.detection_method || 'ml',
+        domain: domain,
+        tld: getTLD(domain),
         time: Date.now()
     });
-    if (history.length > 50) history.pop();
+    if (history.length > 100) history.pop();
     saveHistory();
 }
 
@@ -762,14 +945,6 @@ function renderHistory() {
         };
         list.appendChild(el);
     });
-}
-
-function switchTabByName(name) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    const tabs = ['scan', 'batch', 'history', 'stats'];
-    document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
 }
 
 function clearHistory() {
@@ -850,7 +1025,6 @@ function displayResult(data) {
 
     if (verdict === 'DANGEROUS') resultDiv.classList.add('shake');
 
-    // Explanations
     let expHtml = '';
     if (data.explanations && data.explanations.length > 0) {
         expHtml = '<div class="explanations"><h3>Why we think this</h3>';
@@ -871,7 +1045,6 @@ function displayResult(data) {
         expHtml = '<p style="color:var(--text-dim);font-size:13px;margin-top:16px;">✅ No suspicious features detected.</p>';
     }
 
-    // UPI panel
     let upiHtml = '';
     if (data.upi_info) {
         upiHtml = `
@@ -908,7 +1081,7 @@ function displayResult(data) {
                         ${verdict}
                     </div>
                     <div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">
-                        Detection method: ${data.detection_method || 'ml'} · Confidence: ${(data.confidence*100).toFixed(0)}%
+                        Detection: ${data.detection_method || 'ml'} · Confidence: ${(data.confidence*100).toFixed(0)}%
                     </div>
                     <div class="url-display">
                         ${data.url}
@@ -921,7 +1094,6 @@ function displayResult(data) {
         </div>
     `;
 
-    // Animate gauge
     const gauge = resultDiv.querySelector('.gauge-fill');
     requestAnimationFrame(() => {
         const offset = circumference - (prob * circumference);
@@ -1005,7 +1177,16 @@ async function analyzeBatch() {
         const data = await response.json();
         renderBatchResults(data.results);
         toast(`Analyzed ${data.results.length} URLs`, 'success');
-        data.results.forEach(r => { if (r.verdict !== 'ERROR') addToHistory({ verdict: r.verdict, url: r.url, phishing_probability: r.phishing_probability }); });
+        data.results.forEach(r => {
+            if (r.verdict !== 'ERROR') {
+                addToHistory({
+                    verdict: r.verdict,
+                    url: r.url,
+                    phishing_probability: r.phishing_probability,
+                    detection_method: 'batch'
+                });
+            }
+        });
     } catch (err) {
         toast('Error: ' + err.message, 'error');
     }
@@ -1056,31 +1237,77 @@ function exportBatchCSV() {
 }
 
 // ============================================================
-// STATS CHART
+// STATS DASHBOARD
 // ============================================================
 let statsChart = null;
+let trendChart = null;
+let methodChart = null;
+let tldChart = null;
+let brandChart = null;
+let riskDistChart = null;
+
+function getTextColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
+}
+function getDimColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--text-dim').trim();
+}
+
+function animateValue(el, target, suffix = '') {
+    const start = parseInt(el.textContent) || 0;
+    const duration = 800;
+    const startTime = performance.now();
+    function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (target - start) * eased);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+}
+
 function renderStats() {
+    const total = history.length;
     const safe = history.filter(h => h.verdict === 'SAFE').length;
     const susp = history.filter(h => h.verdict === 'SUSPICIOUS').length;
     const dang = history.filter(h => h.verdict === 'DANGEROUS').length;
-    const total = history.length;
 
-    document.getElementById('statTotal').textContent = total;
-    document.getElementById('statSafe').textContent = safe;
-    document.getElementById('statSuspicious').textContent = susp;
-    document.getElementById('statDangerous').textContent = dang;
+    animateValue(document.getElementById('statTotal'), total);
+    animateValue(document.getElementById('statSafe'), safe);
+    animateValue(document.getElementById('statSuspicious'), susp);
+    animateValue(document.getElementById('statDangerous'), dang);
 
-    rebuildChart();
+    const avgRisk = total > 0
+        ? Math.round(history.reduce((s, h) => s + (h.prob || 0), 0) / total * 100)
+        : 0;
+    document.getElementById('statAvgRisk').textContent = total > 0 ? avgRisk + '%' : '—';
+
+    const trustScore = total > 0
+        ? Math.round((safe * 100 + susp * 50 + dang * 0) / total)
+        : 0;
+    document.getElementById('statTrust').textContent = total > 0 ? trustScore : '—';
+
+    rebuildDoughnutChart();
+    rebuildTrendChart();
+    rebuildMethodChart();
+    rebuildTLDChart();
+    rebuildBrandChart();
+    rebuildRiskDistChart();
+    renderInsights({ total, safe, susp, dang, avgRisk, trustScore });
+    renderDangerList();
 }
 
-function rebuildChart() {
-    const ctx2 = document.getElementById('statsChart').getContext('2d');
+function rebuildDoughnutChart() {
+    const canvas = document.getElementById('statsChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
     const safe = history.filter(h => h.verdict === 'SAFE').length;
     const susp = history.filter(h => h.verdict === 'SUSPICIOUS').length;
     const dang = history.filter(h => h.verdict === 'DANGEROUS').length;
 
     if (statsChart) statsChart.destroy();
-    statsChart = new Chart(ctx2, {
+    statsChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: ['Safe', 'Suspicious', 'Dangerous'],
@@ -1088,24 +1315,391 @@ function rebuildChart() {
                 data: [safe, susp, dang],
                 backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
                 borderWidth: 0,
-                hoverOffset: 8
+                hoverOffset: 10
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            animation: { animateRotate: true, duration: 800 },
+            cutout: '65%',
+            animation: { animateRotate: true, duration: 900 },
             plugins: {
                 legend: {
                     position: 'bottom',
-                    labels: {
-                        color: getComputedStyle(document.documentElement).getPropertyValue('--text').trim(),
-                        font: { size: 12 }
-                    }
+                    labels: { color: getTextColor(), font: { size: 12 }, padding: 12, usePointStyle: true }
                 }
             }
         }
     });
+}
+
+function rebuildTrendChart() {
+    const canvas = document.getElementById('trendChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const days = [];
+    const now = new Date();
+    for (let i = 6; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        d.setHours(0, 0, 0, 0);
+        days.push(d);
+    }
+
+    const counts = days.map(day => {
+        const dayStart = day.getTime();
+        const dayEnd = dayStart + 24 * 60 * 60 * 1000;
+        return history.filter(h => h.time >= dayStart && h.time < dayEnd).length;
+    });
+
+    const labels = days.map(d => d.toLocaleDateString(undefined, { weekday: 'short' }));
+
+    if (trendChart) trendChart.destroy();
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 220);
+    gradient.addColorStop(0, 'rgba(167,139,250,0.4)');
+    gradient.addColorStop(1, 'rgba(167,139,250,0)');
+
+    trendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Scans',
+                data: counts,
+                borderColor: '#a78bfa',
+                backgroundColor: gradient,
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#a78bfa',
+                pointBorderColor: '#fff',
+                pointRadius: 5,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 1000 },
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: getDimColor(), stepSize: 1, precision: 0 },
+                    grid: { color: 'rgba(148,163,184,0.1)' }
+                },
+                x: {
+                    ticks: { color: getDimColor() },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+function rebuildMethodChart() {
+    const canvas = document.getElementById('methodChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const whitelist = history.filter(h => h.method === 'whitelist').length;
+    const rules = history.filter(h => h.method === 'rules').length;
+    const ml = history.filter(h => !h.method || h.method === 'ml' || h.method === 'batch').length;
+
+    if (methodChart) methodChart.destroy();
+
+    if (whitelist + rules + ml === 0) {
+        methodChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['No data yet'],
+                datasets: [{ data: [1], backgroundColor: ['#334155'], borderWidth: 0 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
+                plugins: { legend: { display: false } } }
+        });
+        return;
+    }
+
+    methodChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Whitelist', 'Rules', 'ML Model'],
+            datasets: [{
+                data: [whitelist, rules, ml],
+                backgroundColor: ['#10b981', '#ef4444', '#60a5fa'],
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            animation: { animateRotate: true, duration: 900 },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: getTextColor(), font: { size: 12 }, padding: 12, usePointStyle: true }
+                }
+            }
+        }
+    });
+}
+
+function rebuildTLDChart() {
+    const canvas = document.getElementById('tldChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const tldCounts = {};
+    history
+        .filter(h => h.verdict !== 'SAFE')
+        .forEach(h => {
+            const tld = h.tld || getTLD(h.domain || getDomain(h.url));
+            if (tld) tldCounts[tld] = (tldCounts[tld] || 0) + 1;
+        });
+
+    const sorted = Object.entries(tldCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const labels = sorted.length ? sorted.map(s => s[0]) : ['No data'];
+    const data = sorted.length ? sorted.map(s => s[1]) : [0];
+
+    if (tldChart) tldChart.destroy();
+    tldChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: 'rgba(239,68,68,0.7)',
+                borderColor: '#ef4444',
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 800 },
+            plugins: { legend: { display: false } },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { color: getDimColor(), stepSize: 1, precision: 0 },
+                    grid: { color: 'rgba(148,163,184,0.1)' }
+                },
+                y: {
+                    ticks: { color: getTextColor(), font: { family: 'monospace', size: 12 } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+function rebuildBrandChart() {
+    const canvas = document.getElementById('brandChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const brandCounts = {};
+    history
+        .filter(h => h.verdict !== 'SAFE')
+        .forEach(h => {
+            findBrands(h.url).forEach(b => brandCounts[b] = (brandCounts[b] || 0) + 1);
+        });
+
+    const sorted = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const labels = sorted.length
+        ? sorted.map(s => s[0].charAt(0).toUpperCase() + s[0].slice(1))
+        : ['No data'];
+    const data = sorted.length ? sorted.map(s => s[1]) : [0];
+
+    if (brandChart) brandChart.destroy();
+    brandChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: 'rgba(245,158,11,0.7)',
+                borderColor: '#f59e0b',
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 800 },
+            plugins: { legend: { display: false } },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { color: getDimColor(), stepSize: 1, precision: 0 },
+                    grid: { color: 'rgba(148,163,184,0.1)' }
+                },
+                y: {
+                    ticks: { color: getTextColor(), font: { size: 12 } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+function rebuildRiskDistChart() {
+    const canvas = document.getElementById('riskDistChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const buckets = [0, 0, 0, 0, 0];
+    history.forEach(h => {
+        const p = (h.prob || 0) * 100;
+        const idx = Math.min(4, Math.floor(p / 20));
+        buckets[idx]++;
+    });
+
+    if (riskDistChart) riskDistChart.destroy();
+    riskDistChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['0-20%', '20-40%', '40-60%', '60-80%', '80-100%'],
+            datasets: [{
+                data: buckets,
+                backgroundColor: [
+                    'rgba(16,185,129,0.8)',
+                    'rgba(132,204,22,0.8)',
+                    'rgba(245,158,11,0.8)',
+                    'rgba(249,115,22,0.8)',
+                    'rgba(239,68,68,0.8)'
+                ],
+                borderWidth: 0,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 900 },
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: getDimColor(), stepSize: 1, precision: 0 },
+                    grid: { color: 'rgba(148,163,184,0.1)' }
+                },
+                x: {
+                    ticks: { color: getDimColor() },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+function renderInsights(stats) {
+    const el = document.getElementById('insightsList');
+    const insights = [];
+
+    if (stats.total === 0) {
+        insights.push({
+            cls: 'safe', icon: '📭', title: 'No scans yet',
+            body: 'Analyze some URLs or upload QR codes to populate your dashboard.'
+        });
+    } else {
+        const attackRate = Math.round((stats.dang / stats.total) * 100);
+        if (attackRate >= 50) {
+            insights.push({
+                cls: 'danger', icon: '🚨',
+                title: `High attack rate: ${attackRate}%`,
+                body: `More than half of your scans were dangerous. You may be testing a phishing-heavy sample.`
+            });
+        } else if (attackRate >= 20) {
+            insights.push({
+                cls: 'warn', icon: '⚠️',
+                title: `Moderate threat level: ${attackRate}%`,
+                body: `A meaningful share of scanned URLs were flagged as dangerous. Stay cautious.`
+            });
+        } else {
+            insights.push({
+                cls: 'safe', icon: '🛡️',
+                title: `Low attack rate: ${attackRate}%`,
+                body: `Most URLs you've scanned were safe. Your browsing patterns look clean.`
+            });
+        }
+
+        if (stats.trustScore >= 80) {
+            insights.push({ cls: 'safe', icon: '✅', title: `Trust score: ${stats.trustScore}/100`, body: `Your overall URL hygiene is excellent.` });
+        } else if (stats.trustScore >= 50) {
+            insights.push({ cls: 'warn', icon: '📊', title: `Trust score: ${stats.trustScore}/100`, body: `Mixed signals. Review your recent dangerous scans.` });
+        } else {
+            insights.push({ cls: 'danger', icon: '🔴', title: `Trust score: ${stats.trustScore}/100 — Low`, body: `You've scanned many malicious URLs. Be careful where you scan QR codes.` });
+        }
+
+        const rulesCount = history.filter(h => h.method === 'rules').length;
+        const wlCount = history.filter(h => h.method === 'whitelist').length;
+        if (rulesCount > wlCount && rulesCount > 0) {
+            insights.push({ cls: 'warn', icon: '📋', title: 'Rule layer doing most work', body: `${rulesCount} scans were caught by hard-coded rules before reaching ML — that's the fastest path.` });
+        } else if (wlCount > 0) {
+            insights.push({ cls: 'safe', icon: '⚡', title: 'Whitelist prioritized', body: `${wlCount} scans matched trusted domains — analyzed instantly without ML.` });
+        }
+
+        const tldCounts = {};
+        history.filter(h => h.verdict !== 'SAFE').forEach(h => {
+            const tld = h.tld || getTLD(h.domain || getDomain(h.url));
+            if (tld) tldCounts[tld] = (tldCounts[tld] || 0) + 1;
+        });
+        const topTLD = Object.entries(tldCounts).sort((a, b) => b[1] - a[1])[0];
+        if (topTLD) {
+            insights.push({ cls: 'danger', icon: '🌐', title: `Most common threat TLD: ${topTLD[0]}`, body: `${topTLD[1]} dangerous URLs used this TLD. Attackers love cheap/free TLDs.` });
+        }
+
+        const brandCounts = {};
+        history.filter(h => h.verdict !== 'SAFE').forEach(h => {
+            findBrands(h.url).forEach(b => brandCounts[b] = (brandCounts[b] || 0) + 1);
+        });
+        const topBrand = Object.entries(brandCounts).sort((a, b) => b[1] - a[1])[0];
+        if (topBrand) {
+            insights.push({ cls: 'warn', icon: '🎯', title: `Most impersonated brand: ${topBrand[0]}`, body: `${topBrand[1]} URLs tried to use the name "${topBrand[0]}" to gain trust.` });
+        }
+    }
+
+    el.innerHTML = insights.map((ins, i) => `
+        <div class="insight ${ins.cls}" style="animation-delay:${i * 0.08}s">
+            <span class="insight-icon">${ins.icon}</span>
+            <div class="insight-text">
+                <span class="insight-title">${ins.title}</span>
+                <span class="insight-body">${ins.body}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderDangerList() {
+    const el = document.getElementById('dangerList');
+    const dangerous = history
+        .filter(h => h.verdict === 'DANGEROUS' || h.verdict === 'SUSPICIOUS')
+        .slice(0, 5);
+
+    if (dangerous.length === 0) {
+        el.innerHTML = '<p style="color:var(--text-dim);font-size:13px;">No dangerous URLs yet. Your scans are clean! 🎉</p>';
+        return;
+    }
+
+    el.innerHTML = dangerous.map((d, i) => `
+        <div class="danger-list-item" style="animation-delay:${i * 0.08}s"
+             onclick="document.getElementById('manualUrl').value = '${d.url}'; switchTabByName('scan'); analyzeUrl('${d.url}');"
+             title="Click to re-analyze">
+            <span style="font-size:18px;">⚠️</span>
+            <span class="danger-url">${d.url}</span>
+            <span class="danger-prob">${((d.prob || 0) * 100).toFixed(0)}%</span>
+        </div>
+    `).join('');
 }
 
 // ============================================================
@@ -1118,7 +1712,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Load history on start
+// ============================================================
+// INIT
+// ============================================================
 renderHistory();
 </script>
 </body>
